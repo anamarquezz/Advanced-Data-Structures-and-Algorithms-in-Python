@@ -39,12 +39,12 @@ def zeros(n):
     while n:
         num_zeros += n // 5
         n //= 5
-        return num_zeros
+    return num_zeros
 
 def linear_search(num_zeros):
     n = 0
-    print("n:", n)
-    print("num_zeros:", num_zeros)
+    #print("n:", n)
+    #print("num_zeros:", num_zeros)
     while zeros(n) < num_zeros:
         n += 1
 
@@ -56,7 +56,7 @@ def binary_search(num_zeros):
     left = 0
     right = 5*num_zeros
     while left < right:
-        middle = (left + right) //2
+        middle = (left + right) // 2
         if zeros(middle) < num_zeros:
             left = middle + 1
         else:
@@ -65,11 +65,22 @@ def binary_search(num_zeros):
         return left
     return None
 
+def numberOfEndZeros(timesFive):
+    print('algo')
 
-    pass
 
-for i in range(101):
+for i in range(125):
     print(i, binary_search(i))
     assert binary_search(i) == linear_search(i)
 
 
+def triailingZeros(A):
+    count = 0
+    for i in range(0, A+1, 5):
+        while i % 5 == 0 and i:
+            i //=5
+            count +=1
+    return count
+
+print('\n ** triailingZeros **')
+print(triailingZeros(495))
